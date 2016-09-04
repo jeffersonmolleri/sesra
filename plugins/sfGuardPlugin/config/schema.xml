@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="propel" defaultIdMethod="native" package="plugins.sfGuardPlugin.lib.model">
+
+  <table phpName="sfGuardGroup" name="sf_guard_group">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="VARCHAR" size="255" required="true" />
+    <index name="unique_group_name">
+      <index-column name="name" />
+    </index>
+    <column name="description" type="LONGVARCHAR" />
+  </table>
+
+  <table phpName="sfGuardGroupPermission" name="sf_guard_group_permission">
+    <column name="group_id" type="INTEGER" primaryKey="true" />
+    <column name="permission_id" type="INTEGER" required="true" primaryKey="true" />
+    <foreign-key foreignTable="sf_guard_group" onDelete="cascade">
+      <reference local="group_id" foreign="id" />
+    </foreign-key>
+    <foreign-key foreignTable="sf_guard_permission" onDelete="cascade">
+      <reference local="permission_id" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table phpName="sfGuardPermission" name="sf_guard_permission">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" />
+    <column name="name" type="VARCHAR" size="255" required="true" />
+    <unique name="unique_perm_name">
+      <unique-column name="name" />
+    </unique>
+    <column name="description" type="LONGVARCHAR" />
+  </table>
+
+  <table phpName="sfGuardUser" name="sf_guard_user">
+    <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" />
+    <column name="username" type="VARCHAR" size="128" required="true" />
+    <index name="unique_username">
+      <index-column name="username" />
+    </index>
+    <column name="algorithm" type="VARCHAR" size="128" required="true" default="sha1" />
+    <column name="salt" type="VARCHAR" size="128" required="true" />
+    <column name="password" type="VARCHAR" size="128" required="true" />
+    <column name="created_at" type="TIMESTAMP" />
+    <column name="last_login" type="TIMESTAMP" />
+    <column name="is_active" type="BOOLEAN" required="true" default="1" />
+		<column name="is_super_admin" type="BOOLEAN" required="true" default="0" />
+  </table>
+
+  <table phpName="sfGuardUserPermission" name="sf_guard_user_permission">
+    <column name="user_id" type="INTEGER" primaryKey="true" />
+    <column name="permission_id" type="INTEGER" primaryKey="true" />
+    <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
+      <reference local="user_id" foreign="id" />
+    </foreign-key>
+    <foreign-key foreignTable="sf_guard_permission" onDelete="cascade">
+      <reference local="permission_id" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table phpName="sfGuardUserGroup" name="sf_guard_user_group">
+    <column name="group_id" type="INTEGER" primaryKey="true" />
+    <column name="user_id" type="INTEGER" primaryKey="true" />
+    <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
+      <reference local="user_id" foreign="id" />
+    </foreign-key>
+    <foreign-key foreignTable="sf_guard_group" onDelete="cascade">
+      <reference local="group_id" foreign="id" />
+    </foreign-key>
+  </table>
+
+  <table phpName="sfGuardRememberKey" name="sf_guard_remember_key">
+    <column name="user_id" type="integer" primaryKey="true"/>
+    <foreign-key foreignTable="sf_guard_user" onDelete="cascade">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key> 
+    <column name="remember_key" type="varchar" size="32" />
+    <column name="ip_address" type="varchar" size="15" primaryKey="true"/>
+    <column name="created_at" type="TIMESTAMP" />
+  </table>
+</database>

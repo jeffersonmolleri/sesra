@@ -1,0 +1,21 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfGuardGroup
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_group
+    with_propel_route:     1
+
+    config:
+      list:
+        title: Grupos de Usuários
+
+      edit:
+        title: Editando grupo "%%name%%"
+
+      new:
+        title: Novo Grupo

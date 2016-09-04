@@ -1,0 +1,460 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+
+#content-holder {
+    padding-top: 50px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -80px;
+}
+
+/* Set the fixed height of the footer here */
+#push {
+    height: 80px;
+}
+#footer {
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+	#footer {
+		margin-left: -20px;
+		margin-right: -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+	width: auto;
+	max-width: 960px;
+}
+.container .credit {
+	margin: 20px 0;
+}
+
+/* Sign in form
+-------------------------------------------------- */
+
+.form-signin {
+	/*max-width: 300px;*/
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+	margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+
+.form-signin  .add-on {
+	padding: 7px 9px;
+}
+
+tr .ctrls .btn {
+  visibility: hidden;
+}
+
+tr:hover .ctrls .btn {
+  visibility: visible;
+}
+
+table input, table label, table select, table textarea {
+    margin-bottom: 0 !important;
+}
+
+.valign-middle {
+  vertical-align: middle !important ;
+}
+
+.subnav {
+    position: fixed;
+    border-bottom: 1px solid #ddd;
+    background-color: #f4f4f4;
+    width: 100%;
+    left: 0px;
+    top: 40px;
+    z-index: 9;
+}
+.subnav h1 {
+	white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	width: 75%;
+}
+.subnav-inner {
+    padding: 0 20px;
+}
+.subnav .nav-pills {
+    margin-bottom: 0;
+}
+.subnav-push {
+    height: 100px;
+}
+
+/* Sidenav for Docs
+-------------------------------------------------- */
+
+.bs-docs-sidenav {
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.bs-docs-sidenav > li > a,
+.bs-docs-sidenav > li .element {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+}
+.bs-docs-sidenav > li:first-child > a,
+.bs-docs-sidenav > li:first-child .element {
+  -webkit-border-radius: 6px 6px 0 0;
+     -moz-border-radius: 6px 6px 0 0;
+          border-radius: 6px 6px 0 0;
+}
+.bs-docs-sidenav > li:last-child > a,
+.bs-docs-sidenav > li:last-child .element {
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+}
+.bs-docs-sidenav > .active > a,
+.bs-docs-sidenav > .active > .element {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+/* Chevrons */
+.bs-docs-sidenav .icon-chevron-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+  opacity: .25;
+}
+.bs-docs-sidenav > li > a:hover {
+  background-color: #f5f5f5;
+}
+.bs-docs-sidenav a:hover .icon-chevron-right {
+  opacity: .5;
+}
+.bs-docs-sidenav .active .icon-chevron-right,
+.bs-docs-sidenav .active a:hover .icon-chevron-right {
+  background-image: url(../img/glyphicons-halflings-white.png);
+  opacity: 1;
+}
+.bs-docs-sidenav.affix {
+  /*top: 40px;*/
+}
+.bs-docs-sidenav.affix-bottom {
+  position: absolute;
+  top: auto;
+  bottom: 270px;
+}
+
+#helper {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  list-style-type: none !important;
+  animation-duration: 1s;
+  animation-name: slidein;
+}
+#helper ul.dropdown-menu {
+  position: absolute;
+  right: 0;
+  float: right;
+  left: auto;
+}
+
+@keyframes slidein {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+#needWarning, #needSuccess {
+  display: none;
+}
+
+.btn-group-item {
+  padding: 5px;
+}
+
+.modal form {
+	margin-bottom: 0 !important;
+}
+
+/* New badge and label colors
+-------------------------------------------------- */
+
+.badge-color-1, .label-color-1 {
+    background-color: #1F1F1F;
+}
+.badge-color-1[href], .label-color-1[href] {
+    background-color: #050505;
+}
+.badge-color-2, .label-color-2 {
+    background-color: #525252;
+}
+.badge-color-2[href], .label-color-2[href] {
+    background-color: #393939;
+}
+.badge-color-3, .label-color-3 {
+    background-color: #0D2D78;
+}
+.badge-color-3[href], .label-color-3[href] {
+    background-color: #030B1C;
+}
+.badge-color-4, .label-color-4 {
+    background-color: #123FA6;
+}
+.badge-color-4[href], .label-color-4[href] {
+    background-color: #081C4A;
+}
+.badge-color-5, .label-color-5 {
+    background-color: #780D0D;
+}
+.badge-color-5[href], .label-color-5[href] {
+    background-color: #1C0303;
+}
+.badge-color-6, .label-color-6 {
+    background-color: #A61212;
+}
+.badge-color-6[href], .label-color-6[href] {
+    background-color: #4A0808;
+}
+.badge-color-7, .label-color-7 {
+    background-color: #12780D;
+}
+.badge-color-7[href], .label-color-7[href] {
+    background-color: #041C03;
+}
+.badge-color-8, .label-color-8 {
+    background-color: #19A612;
+}
+.badge-color-8[href], .label-color-8[href] {
+    background-color: #0B4A08;
+}
+.badge-color-9, .label-color-9 {
+    background-color: #300378;
+}
+.badge-color-9[href], .label-color-9[href] {
+    background-color: #080114;
+}
+.badge-color-10, .label-color-10 {
+    background-color: #4405A9;
+}
+.badge-color-10[href], .label-color-10[href] {
+    background-color: #1C0246;
+}
+.badge-color-11, .label-color-11 {
+    background-color: #6C530C;
+}
+.badge-color-11[href], .label-color-11[href] {
+    background-color: #100D02;
+}
+.badge-color-12, .label-color-12 {
+    background-color: #9A7711;
+}
+.badge-color-12[href], .label-color-12[href] {
+    background-color: #3E3007;
+}
+.badge-color-13, .label-color-13 {
+    background-color: #78036D;
+}
+.badge-color-13[href], .label-color-13[href] {
+    background-color: #140113;
+}
+.badge-color-14, .label-color-14 {
+    background-color: #A9059B;
+}
+.badge-color-14[href], .label-color-14[href] {
+    background-color: #460240;
+}
+.badge-color-15, .label-color-15 {
+    background-color: #0A797F;
+}
+.badge-color-15[href], .label-color-15[href] {
+    background-color: #021F21;
+}
+.badge-color-16, .label-color-16 {
+    background-color: #0DA6AF;
+}
+.badge-color-16[href], .label-color-16[href] {
+    background-color: #064C50;
+}
+
+/* aditional styles */
+
+.finished { text-decoration: line-through; }
+
+/* Jumbotron
+-------------------------------------------------- */
+
+#front .navbar {
+	margin-bottom: 0;
+}
+.navbar-inner {
+	border-radius: 0;
+}
+#footer {
+    border-top: 1px solid #E5E5E5;
+}
+
+.jumbotron:before, .jumbotron:after {
+    content: " ";
+    display: table;
+}
+.jumbotron:after {
+    clear: both;
+}
+.jumbotron:before, .jumbotron:after {
+    content: " ";
+    display: table;
+}
+.jumbotron {
+	background: #FAFAFA url('/img/bground.jpg') center center;
+	background-size: 100%;
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 60px;
+    padding: 50px 0 40px;
+}
+.jumbotron .container {
+    margin: 0 auto;
+    width: 920px;
+}
+.jumbotron form {
+    float: right;
+    margin-left: 20px;
+    width: 330px;
+}
+
+.jumbotron .heading {
+    background: none repeat scroll 0 0 transparent;
+    font-size: 44px;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-top: 0;
+    padding-top: 20px;
+}
+.jumbotron .subheading {
+    color: #888888;
+    font-size: 21px;
+    line-height: 1.5;
+    margin: 10px 0 0;
+}
+.jumbotron .heading, .jumbotron .subheading, .teasers h3 {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.teasers {
+    margin-bottom: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+.teasers .teaser {
+    float: left;
+    width: 30%;
+    margin: 0 1.5%;
+}
+
+.teasers h3 {
+    color: #2A2A2A;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1.1;
+    margin: 0 0 9px;
+}
+.teasers h3, .teasers p {
+    padding-right: 10px;
+}
+.teaser .icon {
+	font-size: 72px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    color: #2A2A2A;
+    letter-spacing: -1px;	
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100% !important;
+    display: block;
+}
+
+.clickable {
+	cursor: pointer;
+	text-decoration: none !important;
+}
+
+#sf_guard_auth_form input {
+	padding: 9px 9px 8px 9px !important;
+}

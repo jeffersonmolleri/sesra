@@ -1,0 +1,23 @@
+secure:
+  is_secure: false
+
+signin:
+  is_secure: true
+
+signout:
+  is_secure: true
+
+join:
+  is_secure: false
+
+confirm:
+  is_secure: false
+
+createUser:
+  is_secure: false
+
+retrieveNewToken:
+  is_secure: false
+  
+negate:
+  is_secure: false

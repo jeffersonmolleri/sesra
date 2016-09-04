@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file original="global" source-language="pt_BR" datatype="plaintext" target-language="pt_BR">
+    <body>
+      <trans-unit id="1">
+        <source>objective</source> <target state="needs-translation">Objeto do Estudo</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>researchquestion</source> <target state="needs-translation">Questões de Pesquisa</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>researchprocess</source> <target state="needs-translation">Processo de Busca</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>includecriteria</source> <target state="needs-translation">Critérios de Inclusão</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>excludecriteria</source> <target state="needs-translation">Critérios de Exclusão</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>selectionprocess</source> <target state="needs-translation">Processo de Seleção de Estudos Primários</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>metodology</source> <target state="needs-translation">Metodologia</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>timetable</source> <target state="needs-translation">Cronograma do Estudo</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>assessment</source> <target state="needs-translation">Avaliação Qualitativa</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>data_extraction</source> <target state="needs-translation">Extração dos Dados</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>data_analisys</source> <target state="needs-translation">Análise dos Dados</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>dissemination</source> <target state="needs-translation">Disseminação</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>abstract</source> <target state="needs-translation">Resumo</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>abstract</source> <target state="needs-translation">Resumo</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>include_exclude_criteria</source> <target state="needs-translation">Critérios de Inclusão e Exclusão</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>data_sintesys</source> <target state="needs-translation">Síntese dos Dados</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>class_description</source> <target state="needs-translation">Classificação dos Estudos</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>meta_sintesys</source> <target state="needs-translation">Meta-síntese</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>results</source> <target state="needs-translation">Resultados</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>discussions</source> <target state="needs-translation">Discussões</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>conclusions</source> <target state="needs-translation">Conclusões</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>practice_implications</source> <target state="needs-translation">Implicações para a prática</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>search_implications</source> <target state="needs-translation">Implicações para a pesquisa</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>appointments</source> <target state="needs-translation">Reconhecimentos</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,321 @@
+connection:           propel
+defaultIdMethod:      native
+noXsd:                true
+package:              lib.model
+classes:
+  State:
+    tableName: states
+    columns:
+      id: { required: 1,  primaryKey: 1, autoIncrement: 1, type: integer }
+      name: { required: 1, type: varchar(255) }
+      code: { required: 1, type: varchar(2) }
+      country: { required: 1, type: varchar(2), default: BR }
+    indexes:
+      - [code]
+
+  City:
+    tableName: cities
+    columns:
+      id: { required: 1, primaryKey: 1, autoIncrement: 1, type: integer }
+      name: { required: 1, type: varchar(255) }
+      state_id: { type: integer, required: 1, foreignTable: states, foreignReference: id, onDelete: cascade }
+      slug: { required: 1, type: varchar(255) }
+    indexes:
+      - [slug]
+
+  sfGuardUserProfile:
+    tableName: sf_guard_user_profile
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      name: { required: true, type: varchar(255) }
+      birthdate: { type: DATE }
+      email: { required: true, type: varchar(128), unique: true }
+      user_id: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      institute: { type: varchar(255) }
+      description: { type: longvarchar }
+    _uniques:
+      unique_email: [email]
+
+  SystematicReview:
+    tableName: systematic_reviews
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      title: { required: true, type: varchar(255) }
+      question: { type: longvarchar }
+      restrict: { type: boolean }
+      questionnaire_id: { type: integer, foreignTable: questionnaires, foreignReference: id}
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: systematic_reviews.CREATED_BY, updated: systematic_reviews.UPDATED_BY, deleted: systematic_reviews.DELETED_BY } }
+    
+  SystematicReviewUser:
+    tableName: systematic_reviews_users
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      systematic_review_id: { type: integer }
+#      user_id: { type: integer }
+      user_id: { type: integer, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      level: { type: integer }
+      validation_invite: { type: timestamp }
+      results_validation_invite: { type: timestamp }
+
+  Study:
+    tableName: studies
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      title: { required: true, type: varchar(255) }
+      study_abstract: { type: longvarchar }
+      url: { required: true, type: varchar(500) }
+      publication_date: { type: date }
+      bibtex: { type: longvarchar }
+      base_id: { required: true, type: integer, foreignTable: search_bases, foreignReference: id }
+      systematic_review_id: { required: true, type: integer, foreignTable: systematic_reviews, foreignReference: id}
+      casting_vote: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: studies.CREATED_BY, updated: studies.UPDATED_BY, deleted: studies.DELETED_BY } }
+
+  StudyUserCriteria:
+    tableName: studies_users_criterias
+    columns:
+      study_id: { required: true, type: integer, foreignTable: studies, foreignReference: id,}
+      user_id: { required: true, type: integer, foreignTable: sf_guard_user, foreignReference: id,}
+      criteria_id: { required: true, type: integer, foreignTable: rsl_criterias, foreignReference: id,}
+
+  Questionnaire:
+    tableName: questionnaires
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      systematic_review_id: { type: integer, foreignTable: systematic_reviews, foreignReference: id}
+      name: { type: longvarchar, required: true }
+      description: { type: longvarchar, required: true }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: systematic_reviews.CREATED_BY, updated: systematic_reviews.UPDATED_BY, deleted: systematic_reviews.DELETED_BY } }
+
+  Question:
+    tableName: questions
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      questionnaire_id: { required: true, type: integer, foreignTable: questionnaires, foreignReference: id}
+      description: { type: longvarchar, required: true }
+      answer_type: { type: longvarchar, required: true }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: systematic_reviews.CREATED_BY, updated: systematic_reviews.UPDATED_BY, deleted: systematic_reviews.DELETED_BY } }
+
+  Answer:
+    tableName: answers
+    columns:
+      question_id: { required: true, primaryKey: true, type: integer, foreignTable: questions, foreignReference: id }
+      study_id: { required: true, primaryKey: true, type: integer, foreignTable: studies, foreignReference: id}
+      answer: { type: longvarchar, required: true}
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: systematic_reviews.CREATED_BY, updated: systematic_reviews.UPDATED_BY, deleted: systematic_reviews.DELETED_BY } }
+
+  RslCriteria:
+    tableName: rsl_criterias
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      rsl_id: { type: integer }
+      protocol_id: { type: integer }
+      name: { type: varchar(500) }
+      type: { type: boolean }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: protocols.CREATED_BY, updated: protocols.UPDATED_BY, deleted: protocols.DELETED_BY } }
+
+  Protocol:
+    tableName: protocols
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      objective: { type: longvarchar }
+      population: { type: longvarchar }
+      intervention: { type: longvarchar }
+      comparative: { type: longvarchar }
+      outcome: { type: longvarchar }
+      context: { type: longvarchar }
+      search_string: { type: longvarchar }
+      metodology: { type: longvarchar }
+      assessment: { type: longvarchar }
+      data_extraction: { type: longvarchar }
+      data_analisys: { type: longvarchar }
+      dissemination: { type: longvarchar }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      rsl_id: { type: integer, required: true, foreignTable: systematic_reviews, foreignReference: id }
+      framework_id: { type: integer, required: true, foreignTable: frameworks, foreignReference: id }
+      strategy_id: { type: integer }
+    behaviors:
+      paranoid: { column: deleted_at }
+
+  RslResult:
+    tableName: rsl_results
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      data_sintesys: { type: longvarchar }
+      class_description: { type: longvarchar }
+      meta_sintesys: { type: longvarchar }
+      results: { type: longvarchar }
+      discussions: { type: longvarchar }
+      conclusions: { type: longvarchar }
+      practice_implications: { type: longvarchar }
+      search_implications: { type: longvarchar }
+      appointments: { type: longvarchar }
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      rsl_id: { type: integer, foreignTable: systematic_reviews, foreignReference: id }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: rsl_results.CREATED_BY, updated: rsl_results.UPDATED_BY, deleted: rsl_results.DELETED_BY } }
+
+  SearchBase:
+    tableName: search_bases
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      name: { type: longvarchar }
+      url: { type: longvarchar }
+      api: { type: longvarchar }
+      is_default: { type: boolean, default: true }
+      txtid: { type: varchar(32) }
+      preview_url: { type: varchar(512) }
+      guidelines: { type: longvarchar }
+      _indexes: { search_bases_txtid: [txtid] }
+
+  SystematicReviewSearchBase:
+    tableName: systematic_reviews_search_bases
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      systematic_review_id: { type: integer, required: true, foreignTable: systematic_reviews, foreignReference: id, onDelete: cascade }
+      search_base_id: { type: integer, required: true, foreignTable: search_bases, foreignReference: id, onDelete: cascade }
+      protocol_id: { type: integer, required: true, foreignTable: protocols, foreignReference: id, onDelete: cascade }
+      query_string: { type: longvarchar }
+
+  Metadata:
+    tableName: metadata
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      name: { type: varchar(500) }
+      description: { type: longvarchar }
+      type: { type: varchar(255) }
+      systematic_review_id: { type: integer, required: true, foreignTable: systematic_reviews, foreignReference: id}
+
+  Framework:
+    tableName: frameworks
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      name_pt: { type: varchar(500) }
+      name_us: { type: varchar(500) }
+
+  Activity:
+    tableName: activities
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      name_pt: { type: longvarchar }
+      name_us: { type: longvarchar }
+      framework_name: { type: longvarchar }
+      activity_parent: { type: integer, foreignTable: activities, foreignReference: id }
+      description: { type: longvarchar }
+      framework_id: { type: integer, required: true, foreignTable: frameworks, foreignReference: id}
+
+  Job:
+    tableName: jobs
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      date: { type: timestamp }
+      description: { type: longvarchar }
+      activity_id: { type: integer, foreignTable: activities, foreignReference: id }
+      user_id: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      protocol_id: { type: integer, required: true, foreignTable: protocols, foreignReference: id }
+      finished_at: { type: timestamp }
+      finished_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+
+  Observacao:
+    tableName: observacoes
+    columns:
+      id: { required: true, primaryKey: true, autoIncrement: true, type: integer }
+      owner_id: { type: varchar(256) }
+      owner_model: { type: varchar(512) }
+      owner_column: { type: varchar(512) }
+      observacao: { type: longvarchar }
+      situacao: { type: integer }
+      created_at: { type: timestamp }
+      created_by: { type: integer }
+      updated_at: { type: timestamp }
+      updated_by: { type: integer }
+      deleted_at: { type: timestamp }
+      deleted_by: { type: integer }
+
+  DataExtraction:
+    tableName: data_extractions
+    columns:
+      value: { type: varchar(255) }
+      metadata_id: { type: integer, required: true, foreignTable: metadata, foreignReference: id}
+      study_id: { type: integer, required: true, foreignTable: studies, foreignReference: id}
+      created_at: { type: timestamp }
+      updated_at: { type: timestamp }
+      deleted_at: { type: timestamp }
+      created_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      updated_by: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      deleted_by: { type: integer, required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+    behaviors:
+      paranoid: { column: deleted_at }
+      sfPropelActAsSignableBehavior: { columns: { created: rsl_results.CREATED_BY, updated: rsl_results.UPDATED_BY, deleted: rsl_results.DELETED_BY } }
+
+  AccessToken:
+    tableName: access_tokens
+    columns:
+      id: { type: varchar(13), required: true, primaryKey: true }
+      user_id: { type: integer, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: cascade }
+      expire_at: { type: timestamp, required: true }
+      forward_to: { type: varchar(255) }
+
+  Onthology:
+    tableName: onthologies
+    columns:
+      id: { type: integer, required: true, primaryKey: true }
+      name: { type: varchar(255), required: true }
+      root: { type: integer, required: true, foreignTable: onthologies, foreignReference: id }
+      path: { type: varchar(255) }

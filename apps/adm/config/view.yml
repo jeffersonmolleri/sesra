@@ -1,0 +1,51 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        SESRA
+    description:  'Software Engineering Systematic Review Automation'
+    keywords:     'systematic reviews'
+    language:     pt_BR
+    robots:       index, follow
+
+  stylesheets:    [bootstrap.css, bootstrap-responsive.css, bootstrap-datetimepicker.min.css, bootstrap-wysihtml5.css, ars.css, font-awesome.min.css]
+#[main.css, media, predef_1_0_0, multifile, structure_1_0_0, content_1_0_0, jwysiwyg/jquery.wysiwyg.css, superfish/superfish, superfish/superfish-layout, jquery-ui-themeroller.css, fancybox.css, ui/jquery.ui.selectmenu.css, ui/jquery.ui.all.css, jqtransform.css, jquery.alerts.css, jpicker/jPicker.css, jpicker/css/jPicker-1.1.6.min.css]
+
+  javascripts:
+    - google-code-prettify/prettify.js
+    - jquery/jquery.js
+    - jquery/jquery.taconite.js
+    - jquery/jquery.form.js
+    - bootstrap/bootstrap.js
+    - bootstrap/bootstrap-datetimepicker.min.js
+    - bootstrap/bootstrap-datetimepicker.pt-BR.js
+#    - javascript_utilities.js
+#    - default.js
+#    - jquery/jquery.number_format.js
+#    - jquery/jquery.alphanumeric.js
+#    - jquery/fancybox.js
+#    - jquery/jquery.maskedinput.js
+#    - jquery/jquery-ui-1.8.11.custom.min.js
+#    - jquery/jquery.taconite.js
+#    - datepicker/jquery.ui.datepicker.js
+#    - jquery/jquery.jqtransform.js
+#    - jwysiwyg/jquery.wysiwyg.js
+#    - jquery/jquery.livequery.js
+#    - jquery/jquery.ajaxMultiFileUpload.js
+#    - jquery/jquery.price_format.1.3.js
+#    - jquery/jquery.ui.js
+#    - jquery/ui/jquery.ui.core.js
+#    - jquery/ui/jquery.ui.position.js
+#    - jquery/ui/jquery.ui.widget.js
+#    - jquery/ui/jquery.ui.autocomplete.js
+#    - jquery/ui/jquery.ui.selectmenu.js
+#    - jquery/ui/jquery.ui.accordion.js
+#    - jquery/jquery.alerts.js
+#    - jpicker/jpicker-1.1.6.js
+
+  has_layout:     true
+  layout:         layout

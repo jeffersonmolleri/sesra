@@ -1,0 +1,47 @@
+﻿# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+#default values
+all:
+  company_name: SESRA
+  company_title: 'Software Engineering Systematic Review Automation'
+
+  levels:
+    names:
+      0: Coordenador
+      1: Pesquisador
+      2: Mediador/Revisor
+      3: Interessado
+    ids:
+      coordenador: 0
+      mediador: 2 
+  solr:
+    url_get_bagofword: "http://localhost:8983/solr/ars1/select/?"
+    url_add: "http://localhost:8983/solr/ars1/update?commit=true"
+    fields: ["comment", "preamble", "string", "entrytype", "address", "annote", "author", "booktitle", "crossref", "edition", "editor", "howpublished", "institution", "journal", "key", "month", "note", "number", "numpages", "organization", "pages", "publisher", "school", "series", "title", "type", "volume", "year", "abstract", "affiliation", "chaptername", "cited-by", "cites", "contents", "copyright", "date-added", "date-modified", "doi", "eprint", "isbn", "issn", "keywords", "language", "lccn", "lib-congress", "location", "price", "rating", "read", "size", "source", "url", "_version_", "id"]
+    
+  invitations:
+    sender: jefferson@enova.com.br
+    subject: "[SESRA] Convite de pesquisa"
+    validationSubject: "[SESRA] Validação de Protocolo"
+    timetableSubject: "[SESRA] Atualização de cronograma"
+    tokenSubject: "[SESRA] Nova chave de acesso"
+
+  etapa:
+    url:
+      2:  'systematic_review/needs?id='
+      3:  'systematic_review/team?id='
+      5:  'systematic_review/question?id='
+      6:  'systematic_review/protocols?id='
+      7:  '@protocol_validation?id='
+      10: '@studies_identification?id='
+      11: '@studies_selection?id='
+      12: '@studies_assessment?id='
+      13: '@data_extraction?id='
+      14: '@data_synthesis?id='
+      16: 'systematic_review/dissemination?id='
+      17: 'systematic_review/results?id='
+      18: '@results_validation?id='
+      
+  bibtex:
+    fields: [address , annote , author , booktitle , chapter , crossref , edition , editor , howpublished , institution , journal , key , month , note , number , organization , pages , publisher , school , series , title , type , volume , year]

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This is the Solr schema file for ARS - Automatic Systematic Review software. -->
+<schema name="ars" version="1.5">
+    <fields>
+<!-- 
+    Standard entry types:
+    @article','@book','@booklet','@conference','@inbook',
+    '@incollection','@inproceedings','@manual','@mastersthesis',
+    '@misc','@phdthesis','@proceedings','@techreport','@unpublished'
+
+            Custom entry types
+            '@collection','@patent','@webpage'
+        -->
+        <field name="comment" type="text_en" indexed="true" stored="true"/>
+        <field name="preamble" type="text_en" indexed="true" stored="true"/>
+        <field name="string" type="text_en" indexed="true" stored="true"/>
+        <field name="entrytype" type="string" indexed="true" stored="true"/>
+
+        <!-- Standard entry field names -->
+        <field name="address" type="string" indexed="true" stored="true"/>
+        <field name="annote" type="string" indexed="true" stored="true"/>
+        <field name="author" type="string" indexed="true" stored="true" multiValued="true"/>
+        <field name="booktitle" type="string" indexed="true" stored="true"/>
+        <field name="crossref" type="string" indexed="true" stored="true"/>
+        <field name="edition" type="string" indexed="true" stored="true"/>
+        <field name="editor" type="string" indexed="true" stored="true"/>
+        <field name="howpublished" type="string" indexed="true" stored="true"/>
+        <field name="institution" type="string" indexed="true" stored="true"/>
+        <field name="journal" type="string" indexed="true" stored="true"/>
+        <field name="key" type="string" indexed="true" stored="true"/>
+        <field name="month" type="string" indexed="true" stored="true"/>
+        <field name="note" type="string" indexed="true" stored="true"/>
+        <field name="number" type="string" indexed="true" stored="true"/>
+        <field name="numpages" type="string" indexed="true" stored="true"/>
+        <field name="organization" type="string" indexed="true" stored="true"/>
+        <field name="pages" type="string" indexed="true" stored="true"/>
+        <field name="publisher" type="string" indexed="true" stored="true"/>
+        <field name="school" type="string" indexed="true" stored="true"/>
+        <field name="series" type="string" indexed="true" stored="true"/>
+        <field name="title" type="text_en" indexed="true" stored="true"/>
+        <field name="type" type="string" indexed="true" stored="true"/>
+        <field name="volume" type="string" indexed="true" stored="true"/>
+        <field name="year" type="string" indexed="true" stored="true"/>
+
+        <!-- Custom entry field names -->
+        <field name="abstract" type="text_en" indexed="true" stored="true"/>
+        <field name="affiliation" type="string" indexed="true" stored="true"/>
+        <field name="chaptername" type="string" indexed="true" stored="true"/>
+        <field name="cited-by" type="string" indexed="true" stored="true" multiValued="true"/>
+        <field name="cites" type="string" indexed="true" stored="true" multiValued="true"/>
+        <field name="contents" type="text_en" indexed="true" stored="true"/>
+        <field name="copyright" type="string" indexed="true" stored="true"/>
+        <field name="date-added" type="string" indexed="true" stored="true"/>
+        <field name="date-modified" type="string" indexed="true" stored="true"/>
+        <field name="doi" type="string" indexed="true" stored="true"/>
+        <field name="eprint" type="string" indexed="true" stored="true"/>
+        <field name="isbn" type="string" indexed="true" stored="true"/>
+        <field name="issn" type="string" indexed="true" stored="true"/>
+        <field name="keywords" type="text_en" indexed="true" stored="true"/>
+        <field name="language" type="string" indexed="true" stored="true"/>
+        <field name="lccn" type="string" indexed="true" stored="true"/>
+        <field name="lib-congress" type="string" indexed="true" stored="true"/>
+        <field name="location" type="string" indexed="true" stored="true"/>
+        <field name="price" type="string" indexed="true" stored="true"/>
+        <field name="rating" type="string" indexed="true" stored="true"/>
+        <field name="read" type="string" indexed="true" stored="true"/>
+        <field name="size" type="string" indexed="true" stored="true"/>
+        <field name="source" type="string" indexed="true" stored="true"/>
+        <field name="url" type="string" indexed="true" stored="true"/>
+        <field name="_version_" type="long" indexed="true" stored="true"/>
+        <field name="id" type="long" required="true" indexed="true" stored="true"/>
+    </fields>
+
+    <uniqueKey>id</uniqueKey>
+
+    <types>
+        <!-- A text field with defaults appropriate for English: it
+        tokenizes with StandardTokenizer, removes English stop words
+        (lang/stopwords_en.txt), down cases, protects words from protwords.txt, and
+        finally applies Porter's stemming.  The query time analyzer
+        also applies synonyms from synonyms.txt. -->
+        <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
+            <analyzer type="index">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <!-- in this example, we will only use synonyms at query time
+                <filter class="solr.SynonymFilterFactory" synonyms="index_synonyms.txt" ignoreCase="true" expand="false"/>
+                -->
+                <!-- Case insensitive stop word removal.
+                  add enablePositionIncrements=true in both the index and query
+                  analyzers to leave a 'gap' for more accurate phrase queries.
+                -->
+                <filter class="solr.StopFilterFactory"
+                    ignoreCase="true"
+                    words="lang/stopwords_en.txt"
+                    enablePositionIncrements="true"
+                />
+                <filter class="solr.LowerCaseFilterFactory"/>
+                <filter class="solr.EnglishPossessiveFilterFactory"/>
+                <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+                <!-- Optionally you may want to use this less aggressive stemmer instead of PorterStemFilterFactory:
+                <filter class="solr.EnglishMinimalStemFilterFactory"/>
+                -->
+                <filter class="solr.PorterStemFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+                <filter class="solr.StopFilterFactory"
+                    ignoreCase="true"
+                    words="lang/stopwords_en.txt"
+                    enablePositionIncrements="true"
+                />
+                <filter class="solr.LowerCaseFilterFactory"/>
+                <filter class="solr.EnglishPossessiveFilterFactory"/>
+                <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+                <!-- Optionally you may want to use this less aggressive stemmer instead of PorterStemFilterFactory:
+                <filter class="solr.EnglishMinimalStemFilterFactory"/>
+                -->
+                <filter class="solr.PorterStemFilterFactory"/>
+            </analyzer>
+        </fieldType>
+
+        <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+        <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0"/>
+        <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0"/>
+    </types>
+</schema>

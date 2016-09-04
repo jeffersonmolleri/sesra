@@ -1,0 +1,185 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+ 
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_guard_join:
+  url:   /join
+  param: { module: sfGuardAuth, action: join }
+
+confirm:
+  url:   /confirm
+  param: { module: sfGuardAuth, action: confirm }
+
+negate:
+  url:   /negate
+  param: { module: sfGuardAuth, action: negate }
+
+crawler:
+  url:   /crawler/
+  param: { module: crawler, action: index }
+
+questionnaires:
+  url:   /questionnaires/:id
+  param: { module: questionnaire, action: index }
+  
+questionnaire_new:
+  url: /questionnaire/new
+  param: { module: questionnaire, action: new }
+  
+add_question:
+  url: /add_question
+  param: { module: questionnaire, action: questionAdd }
+  
+remove_question:
+  url: /remove_question
+  param: { module: questionnaire, action: questionRemove }
+
+studies_new:
+  url: /study/new
+  param: { module: study, action: new }
+
+studies_create:
+  url: /study/create
+  param: { module: study, action: create }
+
+studies_update:
+  url: /study/update
+  param: { module: study, action: update }
+
+studies_import_bibtex:
+  url: /study/import_bibtex
+  param: { module: study, action: saveBibtex }
+
+studies_for_review:
+  url:   /study/:id
+  param: { module: study, action: index, requester: null }
+  requirements: { id: \d+ }
+
+studies_identification:
+  url:   /study/identification/:id
+  param: { module: study, action: identification, requester: identification }
+
+studies_selection:
+  url:   /study/studyselection/:id
+  param: { module: study, action: studyselection, requester: selection }
+  
+studies_assessment:
+  url:   /study/studyassessment/:id
+  param: { module: study, action: studyassessment, requester: assessment }
+  
+data_extraction:
+  url:   /study/dataextraction/:id
+  param: { module: study, action: dataextraction, requester: extraction }
+  
+data_synthesis:
+  url:   /study/datasynthesis/:id
+  param: { module: study, action: datasynthesis, requester: synthesis }
+
+studies_extrat_metadata:
+  url:   /study/extratMetaData/
+  param: { module: study, action: extratMetaData }
+
+studies_search_metadata:
+  url:   /study/searchMetada
+  param: { module: study, action: searchMetaData }
+
+sf_guard_create_user:
+  url:   /create_user
+  param: { module: sfGuardAuth, action: createUser }
+ 
+sf_guard_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+update_team:
+  url:  /update_team
+  param: { module: systematic_review, action: updateTeam }
+
+framework_details:
+  url:  /framework_details
+  param: { module: systematic_review, action: frameworkDetails }
+
+update_metadata:
+  url:  /update_metadata
+  param: { module: systematic_review, action: updateMetadata }
+
+delete_metadata:
+  url:  /update_delete
+  param: { module: systematic_review, action: deleteMetadata }
+
+update_search_base:
+  url:  /update_search_base
+  param: { module: systematic_review, action: updateSearchBase }
+
+delete_search_base:
+  url:  /delete_search_base
+  param: { module: systematic_review, action: deleteSearchBase }
+  
+add_observacao:
+  url:  /add_observacao
+  param: { module: systematic_review, action: addObservacao }
+
+new_group:
+  url: users/groups/new
+  param: { module: users, action: newGroup }
+
+create_group:
+  url: users/groups/create
+  param: { module: users, action: createGroup }
+
+edit_group:
+  url: users/groups/edit/:id
+  param: { module: users, action: editGroup }
+
+update_group:
+  url: users/groups/update
+  param: { module: users, action: updateGroup }
+
+delete_group:
+  url: users/groups/delete/:id
+  param: { module: users, action: deleteGroup }
+
+view_group:
+  url: users/groups/view/:id
+  param: { module: users, action: viewGroup }
+
+editme:
+  url:   /me
+  param: { module: users, action: edit }
+
+protocol_validation:
+  url:   systematic_review/validation/:id
+  param: { module: systematic_review, action: validation, message: ValidationInvite }
+
+results_validation:
+  url:   systematic_review/resultsValidation/:id
+  param: { module: systematic_review, action: resultsValidation, message: ResultsValidationInvite }
+
+validation_invite:
+  url:   systematic_review/validationInvite/:id
+  param: { module: systematic_review, action: validationInvite, message: ValidationInvite }
+
+results_validation_invite:
+  url:   systematic_review/resultsValidationInvite/:id
+  param: { module: systematic_review, action: validationInvite, message: ResultsValidationInvite }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: index, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
