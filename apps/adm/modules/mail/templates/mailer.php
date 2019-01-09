@@ -2,12 +2,13 @@
 
 $subject  = '[ARS] '.__('Convite para Avaliação');
 $template = 'conviteAvaliacao.html';
-$from     = array('user@email.com' => 'Jefferson Seide Molléri');
+$from     = array('jefferson@enova.com.br' => 'Jefferson Seide Molléri');
 
-$server   = 'smtp.email.com';
-$port     = 587;
-$username = 'user@email.com';
-$password = 'password';
+$server   = 'smtp.gmail.com';
+$port     = 465;
+$encryption = 'ssl';
+$username = 'jefferson.molleri@gmail.com';
+$password = 'serion49';
 
 $recipients = 'listateste.csv';
 
